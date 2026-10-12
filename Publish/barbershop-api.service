@@ -1,0 +1,22 @@
+[Unit]
+Description=BarberShop Backend API (Node.js)
+After=network.target postgresql.service
+Requires=postgresql.service
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/var/www/barbershop/Publish
+ExecStart=/usr/bin/node /var/www/barbershop/Publish/index.js
+Restart=always
+RestartSec=5
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=barbershop-api
+
+# Environment
+Environment=NODE_ENV=production
+EnvironmentFile=/var/www/barbershop/Publish/.env
+
+[Install]
+WantedBy=multi-user.target

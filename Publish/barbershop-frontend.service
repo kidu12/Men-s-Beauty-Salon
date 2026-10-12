@@ -1,0 +1,18 @@
+[Unit]
+Description=BarberShop Frontend (Static - serve)
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+ExecStart=/usr/bin/npx serve -s /var/www/barbershop/build -l 7900
+Restart=always
+RestartSec=5
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=barbershop-frontend
+
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
